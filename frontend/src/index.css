@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 30% 97%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --muted: 220 20% 92%;
+    --muted-foreground: 215 16% 38%;
+    --border: 214 24% 86%;
+    --input: 214 24% 90%;
+    --ring: 262 83% 58%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
+    color-scheme: light;
+  }
+
+  .dark {
+    --background: 224 42% 7%;
+    --foreground: 210 40% 96%;
+    --card: 222 37% 13%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 37% 11%;
+    --popover-foreground: 210 40% 96%;
+    --muted: 221 30% 18%;
+    --muted-foreground: 215 20% 68%;
+    --border: 219 27% 22%;
+    --input: 219 27% 18%;
+    --ring: 262 83% 66%;
+    --accent: 262 83% 66%;
+    --accent-foreground: 0 0% 100%;
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased transition-colors duration-300;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply bg-background text-foreground placeholder:text-muted-foreground;
+  }
+}
+
+/* Glassmorphism Classes */
+.glass {
+  background: hsl(var(--card) / 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--border) / 0.8);
+  @apply transition-colors duration-300;
+}
+
+.glass-premium {
+  background: linear-gradient(135deg, hsl(var(--card) / 0.78) 0%, hsl(var(--popover) / 0.92) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsl(var(--accent) / 0.2);
+  @apply transition-colors duration-300;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.35);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.55);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Calendar grid cell custom hover shadow */
+.calendar-day-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.calendar-day-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px hsl(var(--accent) / 0.18);
+}
+
+@layer components {
+  .theme-surface {
+    @apply rounded-2xl border border-border bg-card/80 text-card-foreground shadow-sm backdrop-blur transition-colors duration-300;
+  }
+
+  .theme-panel {
+    @apply border-border bg-card/70 text-card-foreground transition-colors duration-300;
+  }
+
+  .theme-field {
+    @apply rounded-xl border border-input bg-background px-4 py-2.5 text-sm text-foreground outline-none transition-colors duration-200 placeholder:text-muted-foreground focus:border-accent focus:ring-1 focus:ring-ring/30;
+  }
+
+  .theme-muted {
+    @apply text-muted-foreground;
+  }
+}
