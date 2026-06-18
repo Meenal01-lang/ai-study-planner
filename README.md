@@ -189,7 +189,7 @@ The goal is simple:
 
 ## 👩‍💻 Author
 
-**Meenal **
+**Meenal**
 
 B.Tech CSE (AI) | Full Stack Development | AI/ML Enthusiast
 
